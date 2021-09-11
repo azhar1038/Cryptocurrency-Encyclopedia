@@ -5,11 +5,11 @@ import com.squareup.moshi.Json
 
 data class Stats(
     @Json(name = "contributors")
-    val contributors: Int,
+    val contributors: Int?,
     @Json(name = "followers")
-    val followers: Int,
+    val followers: Int?,
     @Json(name = "stars")
-    val stars: Int,
+    val stars: Int?,
     @Json(name = "subscribers")
-    val subscribers: Int
+    val subscribers: Int?
 )

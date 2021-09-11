@@ -15,6 +15,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.az.cryptocurrencyencyclopedia.data.remote.dto.CoinDetailDto
+import com.az.cryptocurrencyencyclopedia.domain.model.CoinDetail
 import com.az.cryptocurrencyencyclopedia.presentation.coin_detail.components.CoinTag
 import com.az.cryptocurrencyencyclopedia.presentation.coin_detail.components.TeamListItem
 import com.google.accompanist.flowlayout.FlowRow
@@ -52,33 +54,34 @@ fun CoinDetailView(
                                 .weight(2f)
                                 .align(Alignment.CenterVertically)
                         )
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Text(
-                            text = coin.description,
-                            style = MaterialTheme.typography.body2
-                        )
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Text(
-                            text = "Tags",
-                            style = MaterialTheme.typography.h3,
-                        )
-                        Spacer(modifier = Modifier.height(15.dp))
-                        FlowRow(
-                            mainAxisSpacing = 10.dp,
-                            crossAxisSpacing = 10.dp,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            coin.tags.forEach { tag ->
-                                CoinTag(tag)
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(15.dp))
-                        Text(
-                            text = "Team Members",
-                            style = MaterialTheme.typography.h3,
-                        )
-                        Spacer(modifier = Modifier.height(15.dp))
+
                     }
+                    Spacer(modifier = Modifier.height(15.dp))
+                    Text(
+                        text = coin.description,
+                        style = MaterialTheme.typography.body2
+                    )
+                    Spacer(modifier = Modifier.height(15.dp))
+                    Text(
+                        text = "Tags",
+                        style = MaterialTheme.typography.h3,
+                    )
+                    Spacer(modifier = Modifier.height(15.dp))
+                    FlowRow(
+                        mainAxisSpacing = 10.dp,
+                        crossAxisSpacing = 10.dp,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        coin.tags.forEach { tag ->
+                            CoinTag(tag)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(15.dp))
+                    Text(
+                        text = "Team Members",
+                        style = MaterialTheme.typography.h3,
+                    )
+                    Spacer(modifier = Modifier.height(15.dp))
                 }
 
                 items(coin.team) { teamMember ->

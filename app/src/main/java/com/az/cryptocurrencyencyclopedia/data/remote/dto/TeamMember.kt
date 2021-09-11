@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 
 data class TeamMember(
     @Json(name = "id")
-    val id: String,
+    val id: String?,
     @Json(name = "name")
-    val name: String,
+    val name: String?,
     @Json(name = "position")
-    val position: String
+    val position: String?
 )
