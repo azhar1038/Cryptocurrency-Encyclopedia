@@ -4,6 +4,8 @@ import com.az.cryptocurrencyencyclopedia.common.Constants
 import com.az.cryptocurrencyencyclopedia.data.remote.CoinApi
 import com.az.cryptocurrencyencyclopedia.data.repository.CoinRepositoryImpl
 import com.az.cryptocurrencyencyclopedia.domain.repository.CoinRepository
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,8 +21,11 @@ object AppModule {
     @Provides
     @Singleton
     fun provideCoinApi(): CoinApi {
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
         return Retrofit.Builder()
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .baseUrl(Constants.BASE_URL)
             .build()
             .create(CoinApi::class.java)
